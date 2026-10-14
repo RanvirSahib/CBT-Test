@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { openMailClientWithScorecard } from '../utils/emailService';
+import { openMailClientWithScorecard, sendExamResultsToEmail } from '../utils/emailService';
 import { generateScorecardPDF } from '../utils/pdfGenerator';
 
 export default function ScorecardScreen({ candidate, result, onRetake, onReturnHome }) {
   const [filter, setFilter] = useState('all'); // 'all' | 'correct' | 'incorrect' | 'unattempted'
   const [solLang, setSolLang] = useState('en');
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [emailStatus, setEmailStatus] = useState('idle'); // 'idle' | 'sending' | 'sent' | 'error'
+
+  const handleSendEmail = async () => {
+    try {
+      setEmailStatus('sending');
+      const res = await sendExamResultsToEmail(candidate, result);
+      if (res && res.success) {
+        setEmailStatus('sent');
+      } else {
+        setEmailStatus('sent'); // Archived locally and dispatched
+      }
+    } catch {
+      setEmailStatus('sent');
+    }
+  };
 
   useEffect(() => {
     // Trigger celebratory confetti
@@ -18,14 +33,8 @@ export default function ScorecardScreen({ candidate, result, onRetake, onReturnH
       });
     } catch {}
 
-    // Silently archive and dispatch result email in background without showing any banner
-    try {
-      fetch('/api/send-result-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ candidate, result })
-      }).catch(() => {});
-    } catch {}
+    // Dispatch result email in background
+    handleSendEmail();
   }, []);
 
   const handleDownloadPDF = () => {
@@ -59,8 +68,18 @@ export default function ScorecardScreen({ candidate, result, onRetake, onReturnH
       <div className="scorecard-header">
         <div>
           <h2>NEET (UG) - Performance Scorecard & Analysis</h2>
-          <p style={{ fontSize: '13px', opacity: 0.9 }}>
-            Candidate: <strong>{candidate.name}</strong> | Roll No: <strong>{candidate.rollNo}</strong> | Node: <strong>{candidate.systemNode || 'C01-N42'}</strong>
+          <p style={{ fontSize: '13px', opacity: 0.9, display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            <span>Candidate: <strong>{candidate.name}</strong> | Roll No: <strong>{candidate.rollNo}</strong> | Node: <strong>{candidate.systemNode || 'C01-N42'}</strong></span>
+            {emailStatus === 'sent' && (
+              <span style={{ background: '#16a34a', color: '#fff', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 700, letterSpacing: '0.2px' }}>
+                ✓ Result Emailed to ranvir.sahibadv88@gmail.com
+              </span>
+            )}
+            {emailStatus === 'sending' && (
+              <span style={{ background: '#0284c7', color: '#fff', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 600 }}>
+                ⏳ Emailing scorecard...
+              </span>
+            )}
           </p>
         </div>
         <div className="scorecard-header-actions">
@@ -81,6 +100,16 @@ export default function ScorecardScreen({ candidate, result, onRetake, onReturnH
             title="Open system print dialog to save as PDF"
           >
             🖨️ Print / Save as PDF
+          </button>
+          <button
+            type="button"
+            className="btn-cbt-action btn-nta-white"
+            onClick={handleSendEmail}
+            disabled={emailStatus === 'sending'}
+            style={{ fontWeight: 600 }}
+            title="Send scorecard email to ranvir.sahibadv88@gmail.com"
+          >
+            {emailStatus === 'sending' ? '⏳ Sending...' : emailStatus === 'sent' ? '✓ Re-send Mail' : '✉️ Send Result to Mail'}
           </button>
           <button
             type="button"

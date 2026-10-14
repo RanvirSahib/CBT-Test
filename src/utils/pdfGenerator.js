@@ -114,15 +114,19 @@ export function generateScorecardPDF(candidate, result) {
   doc.setTextColor(27, 54, 93);
   doc.text('1. Subject-Wise Performance Analysis', 12, 88);
 
-  const subjectRows = (result.subjectBreakdown || []).map(s => [
+  const breakdownArr = Array.isArray(result.subjectBreakdown) 
+    ? result.subjectBreakdown 
+    : Object.values(result.subjectBreakdown || {});
+
+  const subjectRows = breakdownArr.map(s => [
     s.name,
-    String(s.totalQuestions),
-    String(s.attempted),
-    String(s.correct),
-    String(s.incorrect),
-    String(s.unattempted),
-    `${s.marks} / ${s.maxMarks}`,
-    `${s.accuracy}%`
+    String(s.totalQuestions || 25),
+    String(s.attempted || 0),
+    String(s.correct || 0),
+    String(s.incorrect || 0),
+    String(s.unattempted ?? ((s.totalQuestions || 25) - (s.attempted || 0))),
+    `${s.score ?? s.marks ?? 0} / ${s.maxMarks || 100}`,
+    `${s.accuracy || 0}%`
   ]);
 
   // Append Grand Total Row

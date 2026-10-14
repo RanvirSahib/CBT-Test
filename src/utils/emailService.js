@@ -161,10 +161,11 @@ export async function sendExamResultsToEmail(candidate, result) {
   const zoologyReport = formatQuestionsForSubject(questionResults, 'Zoology');
 
   // Clean, professional executive summary for email
-  const phy = result.subjectBreakdown?.find(s => s.id === 'phy') || {};
-  const chem = result.subjectBreakdown?.find(s => s.id === 'chem') || {};
-  const bot = result.subjectBreakdown?.find(s => s.id === 'bot') || {};
-  const zoo = result.subjectBreakdown?.find(s => s.id === 'zoo') || {};
+  const breakdown = result.subjectBreakdown || {};
+  const phy = breakdown.phy || (Array.isArray(breakdown) ? breakdown.find(s => s.id === 'phy') : {}) || {};
+  const chem = breakdown.chem || (Array.isArray(breakdown) ? breakdown.find(s => s.id === 'chem') : {}) || {};
+  const bot = breakdown.bot || (Array.isArray(breakdown) ? breakdown.find(s => s.id === 'bot') : {}) || {};
+  const zoo = breakdown.zoo || (Array.isArray(breakdown) ? breakdown.find(s => s.id === 'zoo') : {}) || {};
 
   const payload = {
     _subject: `[OFFICIAL SCORECARD] NEET Minor Test #03 - ${candidate.name} (Roll: ${candidate.rollNo}) | Score: ${result.totalScore}/${result.maxPossibleMarks}`,
@@ -175,16 +176,20 @@ export async function sendExamResultsToEmail(candidate, result) {
     Roll_Number: candidate.rollNo,
     Examination: 'ALLEN PRE-MEDICAL ACHIEVER PHASE - II | MINOR TEST # 03',
     Date_And_Time: submissionTime,
-    Total_Marks: `${result.totalScore} / ${result.maxPossibleMarks} (${((result.totalScore / result.maxPossibleMarks) * 100).toFixed(1)}%)`,
+    Total_Marks: `${result.totalScore} / ${result.maxPossibleMarks} (${((result.totalScore / (result.maxPossibleMarks || 400)) * 100).toFixed(1)}%)`,
     Estimated_Percentile: `${result.estimatedPercentile} %ile`,
     Accuracy: `${result.accuracy}%`,
     Correct_Answers_Count: `${result.totalCorrect} (+${result.totalCorrect * 4} Marks)`,
     Incorrect_Answers_Count: `${result.totalIncorrect} (-${result.totalIncorrect} Marks)`,
     Unattempted_Questions: `${result.totalUnattempted}`,
-    Physics_Section: `${phy.marks || 0} / 100 Marks (Correct: ${phy.correct || 0}, Incorrect: ${phy.incorrect || 0}, Accuracy: ${phy.accuracy || 0}%)`,
-    Chemistry_Section: `${chem.marks || 0} / 100 Marks (Correct: ${chem.correct || 0}, Incorrect: ${chem.incorrect || 0}, Accuracy: ${chem.accuracy || 0}%)`,
-    Botany_Section: `${bot.marks || 0} / 100 Marks (Correct: ${bot.correct || 0}, Incorrect: ${bot.incorrect || 0}, Accuracy: ${bot.accuracy || 0}%)`,
-    Zoology_Section: `${zoo.marks || 0} / 100 Marks (Correct: ${zoo.correct || 0}, Incorrect: ${zoo.incorrect || 0}, Accuracy: ${zoo.accuracy || 0}%)`,
+    Physics_Section: `${phy.score ?? phy.marks ?? 0} / 100 Marks (Correct: ${phy.correct || 0}, Incorrect: ${phy.incorrect || 0}, Accuracy: ${phy.accuracy || 0}%)`,
+    Chemistry_Section: `${chem.score ?? chem.marks ?? 0} / 100 Marks (Correct: ${chem.correct || 0}, Incorrect: ${chem.incorrect || 0}, Accuracy: ${chem.accuracy || 0}%)`,
+    Botany_Section: `${bot.score ?? bot.marks ?? 0} / 100 Marks (Correct: ${bot.correct || 0}, Incorrect: ${bot.incorrect || 0}, Accuracy: ${bot.accuracy || 0}%)`,
+    Zoology_Section: `${zoo.score ?? zoo.marks ?? 0} / 100 Marks (Correct: ${zoo.correct || 0}, Incorrect: ${zoo.incorrect || 0}, Accuracy: ${zoo.accuracy || 0}%)`,
+    Physics_Analysis: physicsReport,
+    Chemistry_Analysis: chemistryReport,
+    Botany_Analysis: botanyReport,
+    Zoology_Analysis: zoologyReport,
     Official_PDF_Report: `Full 100-Question Analysis & Solution Key available as PDF in the CBT portal.`
   };
 
@@ -248,10 +253,11 @@ export async function sendExamResultsToEmail(candidate, result) {
  * Opens Gmail Web Compose or default mail client directly with prefilled scorecard
  */
 export function openMailClientWithScorecard(candidate, result) {
-  const phy = result.subjectBreakdown?.find(s => s.id === 'phy') || {};
-  const chem = result.subjectBreakdown?.find(s => s.id === 'chem') || {};
-  const bot = result.subjectBreakdown?.find(s => s.id === 'bot') || {};
-  const zoo = result.subjectBreakdown?.find(s => s.id === 'zoo') || {};
+  const breakdown = result.subjectBreakdown || {};
+  const phy = breakdown.phy || (Array.isArray(breakdown) ? breakdown.find(s => s.id === 'phy') : {}) || {};
+  const chem = breakdown.chem || (Array.isArray(breakdown) ? breakdown.find(s => s.id === 'chem') : {}) || {};
+  const bot = breakdown.bot || (Array.isArray(breakdown) ? breakdown.find(s => s.id === 'bot') : {}) || {};
+  const zoo = breakdown.zoo || (Array.isArray(breakdown) ? breakdown.find(s => s.id === 'zoo') : {}) || {};
 
   const subject = `NEET Minor Test #03 Result - ${candidate.name} (Roll: ${candidate.rollNo}) | Score: ${result.totalScore}/${result.maxPossibleMarks}`;
   const body = 
@@ -265,7 +271,7 @@ Submission Date: ${new Date().toLocaleString()}
 =========================================
 EXECUTIVE SCORECARD SUMMARY
 =========================================
-• Total Marks: ${result.totalScore} / ${result.maxPossibleMarks} (${((result.totalScore / result.maxPossibleMarks) * 100).toFixed(1)}%)
+• Total Marks: ${result.totalScore} / ${result.maxPossibleMarks} (${((result.totalScore / (result.maxPossibleMarks || 400)) * 100).toFixed(1)}%)
 • Estimated Percentile: ${result.estimatedPercentile} %ile
 • Overall Accuracy: ${result.accuracy}%
 • Total Correct (+4): ${result.totalCorrect}
@@ -276,10 +282,10 @@ EXECUTIVE SCORECARD SUMMARY
 =========================================
 SUBJECT-WISE MARKS BREAKDOWN
 =========================================
-• Physics: ${phy.marks || 0} / 100 Marks (Correct: ${phy.correct || 0}, Incorrect: ${phy.incorrect || 0})
-• Chemistry: ${chem.marks || 0} / 100 Marks (Correct: ${chem.correct || 0}, Incorrect: ${chem.incorrect || 0})
-• Botany: ${bot.marks || 0} / 100 Marks (Correct: ${bot.correct || 0}, Incorrect: ${bot.incorrect || 0})
-• Zoology: ${zoo.marks || 0} / 100 Marks (Correct: ${zoo.correct || 0}, Incorrect: ${zoo.incorrect || 0})
+• Physics: ${phy.score ?? phy.marks ?? 0} / 100 Marks (Correct: ${phy.correct || 0}, Incorrect: ${phy.incorrect || 0})
+• Chemistry: ${chem.score ?? chem.marks ?? 0} / 100 Marks (Correct: ${chem.correct || 0}, Incorrect: ${chem.incorrect || 0})
+• Botany: ${bot.score ?? bot.marks ?? 0} / 100 Marks (Correct: ${bot.correct || 0}, Incorrect: ${bot.incorrect || 0})
+• Zoology: ${zoo.score ?? zoo.marks ?? 0} / 100 Marks (Correct: ${zoo.correct || 0}, Incorrect: ${zoo.incorrect || 0})
 
 * Note: Complete 100-Question Detailed Analysis PDF is available in the CBT portal.`;
 
