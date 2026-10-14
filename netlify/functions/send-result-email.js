@@ -1,8 +1,8 @@
-const https = require('https');
+import https from 'https';
 
 const TARGET_EMAIL = 'ranvir.sahibadv88@gmail.com';
 
-exports.handler = async (event) => {
+export async function handler(event) {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -86,4 +86,4 @@ ${q.explanation ? `Solution: ${q.explanation}` : ''}
       body: JSON.stringify({ error: err.message })
     };
   }
-};
+}
