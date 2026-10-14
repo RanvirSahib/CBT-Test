@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Eligibility Cum Entrance Test (NEET UG) | National Testing Agency</title>
+  <link rel="stylesheet" href="css/nta-theme.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- 1. Government of India Tricolor Top Accent -->
+  <div class="gov-tricolor-stripe"></div>
+
+  <!-- 2. Official NTA Portal Header (exams.nta.ac.in/NEET) -->
+  <header class="portal-top-bar">
+    <div class="portal-emblem-cluster">
+      <!-- National Emblem of India (Ashoka Lion Capital Silhouette) -->
+      <svg class="india-emblem-svg" viewBox="0 0 100 125" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 5 C35 5 25 15 25 28 C25 40 35 48 50 50 C65 48 75 40 75 28 C75 15 65 5 50 5 Z" fill="#1b365d"/>
+        <path d="M40 52 L35 75 L65 75 L60 52 Z" fill="#1b365d"/>
+        <circle cx="50" cy="85" r="10" fill="none" stroke="#1b365d" stroke-width="2"/>
+        <rect x="25" y="98" width="50" height="8" rx="2" fill="#1b365d"/>
+        <text x="50" y="118" font-size="9" font-weight="bold" text-anchor="middle" fill="#1b365d">सत्यमेव जयते</text>
+      </svg>
+
+      <!-- Official NTA Logo Image uploaded by user -->
+      <img src="assets/nta-logo.png" alt="National Testing Agency Logo" style="height: 52px; object-fit: contain;">
+
+      <div class="portal-brand-text">
+        <div class="hindi-title">राष्ट्रीय पात्रता सह प्रवेश परीक्षा (यूजी)</div>
+        <div class="english-title">NATIONAL ELIGIBILITY CUM ENTRANCE TEST (UG)</div>
+        <div class="sub-agency">Department of Higher Education, Ministry of Education, Government of India</div>
+      </div>
+    </div>
+
+    <div class="portal-header-right">
+      <div class="helpline-box">
+        <div>NTA Helpdesk / Support:</div>
+        <strong>011-40759000 / 011-69227700</strong>
+        <div>Email: neet@nta.ac.in</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Official Navigation Menu Bar -->
+  <nav class="portal-nav-bar">
+    <a class="portal-nav-link active" id="nav-home" onclick="showScreen('screen-portal-home')">🏠 Home</a>
+    <a class="portal-nav-link highlight-cbt" id="nav-cbt" onclick="showScreen('screen-login')">💻 CBT Online Mock Test</a>
+    <a class="portal-nav-link" id="nav-bulletin" onclick="openModal('modal-bulletin')">📋 Information Bulletin</a>
+    <a class="portal-nav-link" id="nav-syllabus" onclick="openModal('modal-syllabus')">📚 NEET Syllabus</a>
+    <a class="portal-nav-link" id="nav-tpc" onclick="openModal('modal-tpc')">📍 Test Practice Centres (TPC)</a>
+    <a class="portal-nav-link" id="nav-contact" onclick="alert('NTA Helpline: 011-40759000\nEmail: neet@nta.ac.in\nOffice: First Floor, NSIC-MDBP Building, Okhla Industrial Estate, New Delhi, Delhi 110020')">📞 Contact Us</a>
+  </nav>
+
+  <!-- 4. Breaking News Ticker / Marquee -->
+  <div class="news-ticker-bar">
+    <span class="ticker-tag">Latest Updates</span>
+    <marquee class="ticker-content" behavior="scroll" direction="left" scrollamount="6">
+      🔔 Hands-On Computer Based Test (CBT) Practice Portal is active for NEET (UG) candidates to familiarize with logging into system, navigation, reviewing options, and timer management. &nbsp;&nbsp;|&nbsp;&nbsp; 📌 Candidates are advised to practice regularly using the official CBT platform.
+    </marquee>
+  </div>
+
+  <!-- MULTI-SCREEN MAIN CONTAINER -->
+  <main class="screen-container">
+
+    <!-- ====================================================================
+         SCREEN 0: OFFICIAL NTA NEET PORTAL HOME (exams.nta.ac.in/NEET)
+         ==================================================================== -->
+    <section id="screen-portal-home" class="screen active">
+      <div class="portal-home-content">
+        <div class="portal-hero-grid">
+          
+          <!-- Left Hero Banner -->
+          <div class="hero-banner-card">
+            <h2>NEET (UG) Practice & Assessment Portal</h2>
+            <p>
+              National Testing Agency (NTA) conducts the National Eligibility cum Entrance Test (UG) for admission to undergraduate medical (MBBS), dental (BDS), and AYUSH courses in all medical institutions in India. Practice on the official NTA CBT exam simulator with authentic marking scheme (+4 / -1), question palette, and section navigation.
+            </p>
+            <div class="hero-action-buttons">
+              <button type="button" class="btn-hero-launch-cbt" onclick="showScreen('screen-login')">
+                🚀 Launch CBT Mock Test Simulator
+              </button>
+              <button type="button" class="btn-hero-secondary" onclick="openModal('modal-bulletin')">
+                📄 View Information Bulletin
+              </button>
+              <button type="button" class="btn-hero-secondary" onclick="openModal('modal-syllabus')">
+                🧪 Subject Syllabus Checklist
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Candidate Activity Panel -->
+          <div class="activity-card">
+            <h3>Candidate Activity</h3>
+            <div class="activity-links-list">
+              <div class="activity-link-item" onclick="showScreen('screen-login')">
+                <span>📝 Online CBT Mock Test Practice</span>
+                <span>➔</span>
+              </div>
+              <div class="activity-link-item" onclick="openModal('modal-bulletin')">
+                <span>📘 Information Bulletin & Exam Scheme</span>
+                <span>➔</span>
+              </div>
+              <div class="activity-link-item" onclick="openModal('modal-syllabus')">
+                <span>📚 NEET (UG) Subject Syllabus</span>
+                <span>➔</span>
+              </div>
+              <div class="activity-link-item" onclick="openModal('modal-tpc')">
+                <span>🏢 Test Practice Centre (TPC) Network</span>
+                <span>➔</span>
+              </div>
+              <div class="activity-link-item" onclick="openModal('modal-question-paper')">
+                <span>📄 Sample Question Paper Archive</span>
+                <span>➔</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Portal Information 3-Columns -->
+        <div class="portal-info-row">
+          <div class="portal-tile-card">
+            <h4>🎯 Examination Pattern</h4>
+            <p>The test comprises four subjects: Physics, Chemistry, Botany, and Zoology. Each subject has two sections: Section A (35 Questions) and Section B (15 Questions, attempt any 10).</p>
+          </div>
+          <div class="portal-tile-card">
+            <h4>⚖️ Marking Scheme</h4>
+            <p>Correct option: <strong>+4 marks</strong>. Incorrect option: <strong>-1 mark</strong>. Unattempted/Unanswered: <strong>0 marks</strong>. Total marks: 720.</p>
+          </div>
+          <div class="portal-tile-card">
+            <h4>⏱️ Test Duration</h4>
+            <p>Total time duration is 200 minutes (3 hours 20 minutes) for full length mock, and 20 minutes for high-yield quick practice tests.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 1: CANDIDATE LOGIN (PDF Page 3)
+         ==================================================================== -->
+    <section id="screen-login" class="screen">
+      <div class="login-screen-bg">
+        <div class="login-sub-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/nta-logo.png" alt="NTA" style="height: 32px; object-fit: contain;">
+            <h2>Candidate Login</h2>
+          </div>
+          <span style="font-size: 11px; color: #666;">Computer Based Test (CBT) Portal</span>
+        </div>
+        
+        <div class="login-card-replica">
+          <form id="login-form">
+            <div class="login-field-group">
+              <label for="candidate-roll-input">Roll Number / Username</label>
+              <input type="text" id="candidate-roll-input" class="login-input" value="3804113256" required>
+            </div>
+
+            <div class="login-field-group">
+              <label for="candidate-name-input">Candidate Full Name</label>
+              <input type="text" id="candidate-name-input" class="login-input" value="Mansi" required>
+            </div>
+
+            <div class="login-field-group">
+              <label for="candidate-password">Password / DOB (DD-MM-YYYY)</label>
+              <input type="password" id="candidate-password" class="login-input" value="1234" required>
+            </div>
+
+            <div class="login-mode-selector">
+              <p>EXAMINATION PRACTICE MODE:</p>
+              <div class="mode-pills-row">
+                <label class="mode-pill selected">
+                  <input type="radio" name="exam-mode" value="quick" checked style="display:none;">
+                  <span>⚡ Quick Mock (20 Qs - 20 Mins)</span>
+                </label>
+                <label class="mode-pill">
+                  <input type="radio" name="exam-mode" value="full" style="display:none;">
+                  <span>🏆 Full NEET (200 Qs - 200 Mins)</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-nta-login" id="btn-login-submit">Login & Proceed</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 2: CANDIDATE WELCOME SCREEN (PDF Page 3 Bottom)
+         ==================================================================== -->
+    <section id="screen-welcome" class="screen">
+      <div class="welcome-screen-bg">
+        <div class="welcome-box-replica">
+          <img src="assets/nta-logo.png" alt="NTA Logo" style="height: 40px; object-fit: contain; margin-bottom: 14px;">
+          <div class="candidate-photo-frame">
+            <span>👤</span>
+          </div>
+          <div class="welcome-title">Welcome, <span class="display-candidate-name">Atul Singh</span></div>
+          
+          <div class="welcome-details-grid">
+            <table>
+              <tr>
+                <td>Roll Number:</td>
+                <td><strong class="display-candidate-roll">NEET2026-904128</strong></td>
+              </tr>
+              <tr>
+                <td>System Node:</td>
+                <td><strong>C01-N42</strong></td>
+              </tr>
+              <tr>
+                <td>Subject:</td>
+                <td><strong class="display-candidate-subject">NEET (UG) - Medical Entrance Examination</strong></td>
+              </tr>
+            </table>
+          </div>
+
+          <button type="button" class="btn-nta-proceed-welcome" id="btn-welcome-proceed">Proceed</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 3: GENERAL INSTRUCTIONS (PDF Page 4)
+         ==================================================================== -->
+    <section id="screen-instructions" class="screen">
+      <div class="instruction-screen-bg">
+        <div class="instruction-top-bar">
+          <h2>General Instructions</h2>
+          <div class="instruction-lang-selector">
+            <label for="instruction-lang-select">View in:</label>
+            <select id="instruction-lang-select">
+              <option value="en" selected>English</option>
+              <option value="hi">Hindi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="instruction-body-scroll">
+          <h3>Please read the instructions carefully</h3>
+          <p><strong>General Instructions:</strong></p>
+          <ol>
+            <li>Total duration of examination is 200 minutes for Full NEET Mock or 20 minutes for Quick Practice.</li>
+            <li>The clock will be set at the server. The countdown timer in the top right corner of screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</li>
+            <li>The Question Palette displayed on the right side of screen will show the status of each question using one of the following symbols:</li>
+          </ol>
+
+          <!-- Exact Symbols Table from PDF Page 4 & 5 -->
+          <table class="legend-explain-table">
+            <tr>
+              <td style="width: 50px; text-align: center;"><span class="nta-shape-badge badge-not-visited">99</span></td>
+              <td>You have not visited the question yet.</td>
+            </tr>
+            <tr>
+              <td style="width: 50px; text-align: center;"><span class="nta-shape-badge badge-not-answered">02</span></td>
+              <td>You have not answered the question.</td>
+            </tr>
+            <tr>
+              <td style="width: 50px; text-align: center;"><span class="nta-shape-badge badge-answered">03</span></td>
+              <td>You have answered the question.</td>
+            </tr>
+            <tr>
+              <td style="width: 50px; text-align: center;"><span class="nta-shape-badge badge-marked-review">00</span></td>
+              <td>You have NOT answered the question, but have marked the question for review.</td>
+            </tr>
+            <tr>
+              <td style="width: 50px; text-align: center;"><span class="nta-shape-badge badge-ans-marked-review">00</span></td>
+              <td>The question(s) "Answered and Marked for Review" will be considered for evaluation.</td>
+            </tr>
+          </table>
+
+          <h3>Navigating to a Question:</h3>
+          <ol>
+            <li>To answer a question, click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question.</li>
+            <li>Click on <strong>Save & Next</strong> to save your answer for the current question and then go to the next question.</li>
+            <li>Click on <strong>Mark for Review & Next</strong> to mark a question for review without answering and proceed to the next question.</li>
+          </ol>
+
+          <h3>Answering a Question:</h3>
+          <ol>
+            <li>To select your answer, click on the button of one of the options.</li>
+            <li>To deselect your chosen answer, click on the button of the chosen option again or click on the <strong>Clear Response</strong> button.</li>
+            <li>To change your chosen answer, click on the button of another option.</li>
+            <li>To save your answer, you MUST click on the <strong>Save & Next</strong> button.</li>
+            <li>NEET Marking Scheme: <strong>+4 Marks</strong> for each correct answer, <strong>-1 Mark</strong> for incorrect answer, and <strong>0 Marks</strong> for unattempted questions.</li>
+          </ol>
+        </div>
+
+        <div class="instruction-declaration-box">
+          <label>
+            <input type="checkbox" id="undertaking-checkbox">
+            <span>I have read and understood the instructions. All computer hardware allotted to me are in proper working condition. I declare that I am not in possession of any prohibited electronic devices.</span>
+          </label>
+        </div>
+
+        <div class="instruction-footer-buttons">
+          <button type="button" class="btn-nta-white" onclick="showScreen('screen-welcome')">&laquo; Back</button>
+          <button type="button" class="btn-nta-proceed-exam" id="btn-start-exam" disabled>PROCEED</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 4: MAIN CBT EXAMINATION CONSOLE (PDF Pages 5-8)
+         ==================================================================== -->
+    <section id="screen-cbt" class="screen">
+      <div class="cbt-master-layout">
+        
+        <!-- Top Sub-Header Toolbar (Page 5) -->
+        <div class="cbt-top-banner">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="assets/nta-logo.png" alt="NTA Logo" style="height: 30px; object-fit: contain;">
+            <div class="candidate-name-bracket">
+              [ <span class="display-candidate-name">Atul Singh</span> ]
+            </div>
+          </div>
+
+          <div class="cbt-top-right-group">
+            <!-- Font Resizer -->
+            <div class="font-resizer-group">
+              <span style="font-size: 10px; color: #666; margin-right: 4px;">Font:</span>
+              <button type="button" class="btn-font-resize" onclick="adjustFontSize(-1)">A-</button>
+              <button type="button" class="btn-font-resize" onclick="adjustFontSize(0)">A</button>
+              <button type="button" class="btn-font-resize" onclick="adjustFontSize(1)">A+</button>
+            </div>
+
+            <!-- Language Switcher in Exam -->
+            <div style="display: flex; align-items: center; gap: 4px; font-size: 12px;">
+              <span>Language:</span>
+              <select id="exam-live-lang-select" style="padding: 2px 6px; font-size: 11.5px; border: 1px solid #ccc;">
+                <option value="en" selected>English</option>
+                <option value="hi">हिन्दी</option>
+              </select>
+            </div>
+
+            <!-- Fullscreen Toggle -->
+            <button type="button" class="btn-nta-white" onclick="toggleFullscreen()" style="padding: 2px 8px; font-size: 11px;">⛶ Fullscreen</button>
+
+            <!-- Question Paper Link -->
+            <button type="button" class="btn-link-qp" id="btn-question-paper">📄 Question Paper</button>
+
+            <!-- Live Countdown Timer (Page 5) -->
+            <div class="countdown-timer-container">
+              <span style="font-weight: 700; font-size: 12px;">Remaining Time:</span>
+              <span class="countdown-timer-badge" id="timer-countdown">00:20:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Tabs Row (Page 7) -->
+        <div class="cbt-sections-bar" id="section-tabs-container">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Exam Workspace: Question Pane (Left) + Question Palette (Right) -->
+        <div class="cbt-main-body" id="cbt-workspace">
+          
+          <!-- LEFT: Question Area -->
+          <div class="question-pane-wrapper">
+            <div class="question-header-bar">
+              <div>
+                <span class="q-title-bold" id="q-current-num">Question No. 1</span>
+                <span id="q-current-sec-name" style="color: #666; font-size: 12px; margin-left: 6px;"></span>
+              </div>
+              <div class="q-marks-pill">
+                Marks for correct answer: <strong style="color: #2e7d32;">+4</strong> | Negative: <strong style="color: #c9302c;">-1</strong>
+              </div>
+            </div>
+
+            <div class="question-scroll-viewport">
+              <div class="question-statement-box" id="q-statement-text">
+                <!-- Question Statement -->
+              </div>
+              
+              <!-- Multiple Choice Options -->
+              <div class="options-list-grid" id="q-options-container">
+                <!-- Options rendered here -->
+              </div>
+            </div>
+
+            <!-- Action Controls Footer (Page 7) -->
+            <div class="cbt-action-footer">
+              <div class="footer-action-buttons-left">
+                <button type="button" class="btn-cbt-action btn-nta-green" id="btn-save-next">Save & Next</button>
+                <button type="button" class="btn-cbt-action btn-nta-orange" id="btn-save-review">Save & Mark For Review</button>
+                <button type="button" class="btn-cbt-action btn-nta-white" id="btn-clear-response">Clear Response</button>
+                <button type="button" class="btn-cbt-action btn-nta-blue" id="btn-review-next">Mark For Review & Next</button>
+              </div>
+              <div class="footer-action-buttons-right">
+                <button type="button" class="btn-cbt-action btn-nta-submit" id="btn-submit-exam">Submit</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide Palette Toggle Button (Page 6: ">" / "<") -->
+          <button type="button" class="palette-collapse-toggle" id="btn-palette-toggle" title="Collapse / Expand Palette">&gt;</button>
+
+          <!-- RIGHT: Question Palette (Page 5) -->
+          <aside class="palette-pane-wrapper" id="palette-pane">
+            
+            <div class="palette-candidate-profile">
+              <div class="palette-candidate-avatar">👤</div>
+              <div class="palette-candidate-meta">
+                <div><strong><span class="display-candidate-name">Atul Singh</span></strong></div>
+                <div>Node: <strong>C01-N42</strong></div>
+              </div>
+            </div>
+
+            <!-- 5-State Legend Summary (Page 5) -->
+            <div class="palette-legend-grid">
+              <div class="legend-stat-item">
+                <span class="nta-shape-badge badge-not-visited" id="count-not-visited">0</span>
+                <span>Not Visited</span>
+              </div>
+              <div class="legend-stat-item">
+                <span class="nta-shape-badge badge-not-answered" id="count-not-answered">0</span>
+                <span>Not Answered</span>
+              </div>
+              <div class="legend-stat-item">
+                <span class="nta-shape-badge badge-answered" id="count-answered">0</span>
+                <span>Answered</span>
+              </div>
+              <div class="legend-stat-item">
+                <span class="nta-shape-badge badge-marked-review" id="count-marked-review">0</span>
+                <span>Marked for Review</span>
+              </div>
+              <div class="legend-stat-item" style="grid-column: span 2;">
+                <span class="nta-shape-badge badge-ans-marked-review" id="count-ans-marked-review">0</span>
+                <span>Ans & Marked for Review</span>
+              </div>
+            </div>
+
+            <!-- Section Title & Question Number Grid -->
+            <div class="palette-grid-scroll">
+              <div class="palette-sec-heading" id="palette-current-section-title">SECTION QUESTIONS</div>
+              <div class="palette-grid-buttons" id="palette-buttons-grid">
+                <!-- Question buttons -->
+              </div>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 5: SCORECARD & PERFORMANCE REVIEW
+         ==================================================================== -->
+    <section id="screen-result" class="screen">
+      <div class="scorecard-screen-bg">
+        <div class="scorecard-container">
+          <div class="scorecard-header">
+            <div>
+              <h2>NEET (UG) - Performance Scorecard & Analysis</h2>
+              <p style="font-size: 12px; opacity: 0.9;">Candidate: <span class="display-candidate-name">Atul Singh</span> | Roll No: <span class="display-candidate-roll">NEET2026-904128</span></p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" class="btn-nta-white" onclick="showScreen('screen-portal-home')">🏠 Return to Portal</button>
+              <button type="button" class="btn-nta-green" id="btn-retake-exam">🔄 Retake Test</button>
+            </div>
+          </div>
+
+          <div class="scorecard-body">
+            <!-- Key Scores -->
+            <div class="score-stats-row">
+              <div class="stat-tile score-highlight">
+                <div class="title">Total Score</div>
+                <div class="num" id="res-total-score">0 / 720</div>
+              </div>
+              <div class="stat-tile">
+                <div class="title">Accuracy</div>
+                <div class="num" id="res-accuracy" style="color: #337ab7;">0%</div>
+              </div>
+              <div class="stat-tile">
+                <div class="title">Correct (+4)</div>
+                <div class="num" id="res-correct" style="color: #28a745;">0</div>
+              </div>
+              <div class="stat-tile">
+                <div class="title">Incorrect (-1)</div>
+                <div class="num" id="res-incorrect" style="color: #d9534f;">0</div>
+              </div>
+              <div class="stat-tile">
+                <div class="title">Unattempted (0)</div>
+                <div class="num" id="res-unattempted" style="color: #666666;">0</div>
+              </div>
+              <div class="stat-tile">
+                <div class="title">Negative Lost</div>
+                <div class="num" id="res-negative" style="color: #b71c1c;">0</div>
+              </div>
+            </div>
+
+            <!-- Subject-wise Table -->
+            <h3 style="font-size: 14px; margin-bottom: 8px; color: #1a428a;">Subject-wise Marks Breakdown:</h3>
+            <table class="nta-summary-table" style="margin-bottom: 24px;">
+              <thead>
+                <tr>
+                  <th style="text-align: left;">Subject</th>
+                  <th>Questions</th>
+                  <th>Attempted</th>
+                  <th>Correct</th>
+                  <th>Incorrect</th>
+                  <th>Score</th>
+                  <th>Accuracy</th>
+                </tr>
+              </thead>
+              <tbody id="res-subject-breakdown-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+
+            <!-- Question by Question Solutions -->
+            <h3 style="font-size: 14px; margin-bottom: 12px; color: #1a428a;">Question Solutions & Detailed Explanations:</h3>
+            <div id="solutions-review-container">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       PORTAL MODAL: INFORMATION BULLETIN
+       ==================================================================== -->
+  <div class="nta-modal-overlay" id="modal-bulletin">
+    <div class="nta-modal-box">
+      <div class="nta-modal-header">
+        <h3>NEET (UG) Information Bulletin & Scheme of Examination</h3>
+        <button type="button" class="nta-modal-close" onclick="closeModal('modal-bulletin')">&times;</button>
+      </div>
+      <div class="nta-modal-content">
+        <h4 style="color: #1a365d; margin-bottom: 8px;">1. Pattern of the Test</h4>
+        <p>The Test pattern of NEET (UG) comprises four Subjects. Each subject will consist of two sections:</p>
+        <ul style="margin-left: 20px; margin-bottom: 12px;">
+          <li><strong>Section A:</strong> 35 Questions (All compulsory)</li>
+          <li><strong>Section B:</strong> 15 Questions (Candidates can choose to attempt any 10 Questions)</li>
+        </ul>
+        <h4 style="color: #1a365d; margin-bottom: 8px;">2. Marking Scheme</h4>
+        <ul style="margin-left: 20px; margin-bottom: 12px;">
+          <li>Correct answer: <strong>Four marks (+4)</strong></li>
+          <li>Incorrect option marked: <strong>Minus one mark (-1)</strong></li>
+          <li>Unanswered / Unattempted: <strong>Zero mark (0)</strong></li>
+        </ul>
+        <h4 style="color: #1a365d; margin-bottom: 8px;">3. Syllabus Overview</h4>
+        <p>The Question Paper is based on the given syllabus notified by the National Medical Commission (NMC) covering Core Physics, Chemistry, and Biology (Botany and Zoology) of Class 11 and Class 12.</p>
+      </div>
+      <div class="nta-modal-footer">
+        <button type="button" class="btn-nta-green" onclick="closeModal('modal-bulletin'); showScreen('screen-login');">Take CBT Mock Test Now</button>
+        <button type="button" class="btn-nta-white" onclick="closeModal('modal-bulletin')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       PORTAL MODAL: NEET SYLLABUS CHECKLIST
+       ==================================================================== -->
+  <div class="nta-modal-overlay" id="modal-syllabus">
+    <div class="nta-modal-box">
+      <div class="nta-modal-header">
+        <h3>NEET (UG) Subject Syllabus Checklist</h3>
+        <button type="button" class="nta-modal-close" onclick="closeModal('modal-syllabus')">&times;</button>
+      </div>
+      <div class="nta-modal-content">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <h4 style="color: #1a428a; border-bottom: 1px solid #ccc; padding-bottom: 4px;">Physics</h4>
+            <ul style="margin-left: 18px; font-size: 12px; line-height: 1.8;">
+              <li>Physical-world and measurement</li>
+              <li>Kinematics & Laws of Motion</li>
+              <li>Work, Energy and Power</li>
+              <li>Gravitation & Properties of Bulk Matter</li>
+              <li>Thermodynamics & Kinetic Theory</li>
+              <li>Electrostatics & Current Electricity</li>
+              <li>Optics & Dual Nature of Matter</li>
+              <li>Atoms, Nuclei & Electronic Devices</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color: #1a428a; border-bottom: 1px solid #ccc; padding-bottom: 4px;">Chemistry</h4>
+            <ul style="margin-left: 18px; font-size: 12px; line-height: 1.8;">
+              <li>Some Basic Concepts of Chemistry</li>
+              <li>Structure of Atom & Periodic Classification</li>
+              <li>Chemical Bonding and Molecular Structure</li>
+              <li>Chemical Thermodynamics & Equilibrium</li>
+              <li>Redox Reactions and Electrochemistry</li>
+              <li>Coordination Compounds</li>
+              <li>Organic Chemistry Principles & Hydrocarbons</li>
+              <li>Biomolecules</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color: #1a428a; border-bottom: 1px solid #ccc; padding-bottom: 4px;">Botany</h4>
+            <ul style="margin-left: 18px; font-size: 12px; line-height: 1.8;">
+              <li>Diversity in Living World & Plant Kingdom</li>
+              <li>Cell: Structure and Function</li>
+              <li>Plant Physiology (Photosynthesis, Respiration)</li>
+              <li>Plant Growth and Development</li>
+              <li>Reproduction in Flowering Plants</li>
+              <li>Genetics and Evolution</li>
+              <li>Ecology and Environment</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color: #1a428a; border-bottom: 1px solid #ccc; padding-bottom: 4px;">Zoology</h4>
+            <ul style="margin-left: 18px; font-size: 12px; line-height: 1.8;">
+              <li>Animal Kingdom & Structural Organisation</li>
+              <li>Human Physiology (Digestion, Respiration, Neural)</li>
+              <li>Chemical Coordination & Integration</li>
+              <li>Human Reproduction & Reproductive Health</li>
+              <li>Principles of Inheritance and Variation</li>
+              <li>Human Health and Disease</li>
+              <li>Biotechnology: Principles and Processes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="nta-modal-footer">
+        <button type="button" class="btn-nta-white" onclick="closeModal('modal-syllabus')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       PORTAL MODAL: TEST PRACTICE CENTRES (TPC) (PDF Page 9)
+       ==================================================================== -->
+  <div class="nta-modal-overlay" id="modal-tpc">
+    <div class="nta-modal-box">
+      <div class="nta-modal-header">
+        <h3>Test Practice Centres (TPC) - NTA Network</h3>
+        <button type="button" class="nta-modal-close" onclick="closeModal('modal-tpc')">&times;</button>
+      </div>
+      <div class="nta-modal-content">
+        <p style="margin-bottom: 10px;">As per Ministry of Education guidelines and NTA notification (Page 9 of AboutCBT):</p>
+        <p>NTA has established a countrywide network of Test Practice Centres (TPCs) across schools and engineering colleges equipped with modern computer infrastructure. Any student can use this facility free of charge on Saturdays and Sundays to practice using the computer mouse, virtual keypad, question palette, and reviewing answers.</p>
+        <div style="background: #e8f4fc; border: 1px solid #b8daff; padding: 12px; border-radius: 4px; margin-top: 14px;">
+          <strong>Your Current Practice Terminal:</strong> Node C01-N42 (Local Simulated Practice Environment)
+        </div>
+      </div>
+      <div class="nta-modal-footer">
+        <button type="button" class="btn-nta-white" onclick="closeModal('modal-tpc')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 1: QUESTION PAPER MODAL (PDF Page 6)
+       ==================================================================== -->
+  <div class="nta-modal-overlay" id="modal-question-paper">
+    <div class="nta-modal-box">
+      <div class="nta-modal-header">
+        <h3>Question Paper View</h3>
+        <button type="button" class="nta-modal-close" id="btn-qp-close" onclick="closeModal('modal-question-paper')">&times;</button>
+      </div>
+      <div class="nta-modal-content" id="qp-modal-body">
+        <!-- All questions rendered -->
+      </div>
+      <div class="nta-modal-footer">
+        <button type="button" class="btn-nta-white" onclick="closeModal('modal-question-paper')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 2: SUBMISSION CONFIRMATION SUMMARY MODAL (PDF Page 7)
+       ==================================================================== -->
+  <div class="nta-modal-overlay" id="modal-submit-summary">
+    <div class="nta-modal-box">
+      <div class="nta-modal-header">
+        <h3>Examination Summary</h3>
+        <button type="button" class="nta-modal-close" id="btn-summary-close" onclick="closeModal('modal-submit-summary')">&times;</button>
+      </div>
+      <div class="nta-modal-content">
+        <p style="margin-bottom: 10px; font-weight: 700;">Please verify your test summary before confirming final submission:</p>
+        <table class="nta-summary-table">
+          <thead>
+            <tr>
+              <th style="text-align: left;">Section Name</th>
+              <th>No. of Questions</th>
+              <th>Answered</th>
+              <th>Not Answered</th>
+              <th>Marked for Review</th>
+              <th>Ans & Marked Review</th>
+              <th>Not Visited</th>
+            </tr>
+          </thead>
+          <tbody id="summary-table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+        <div style="background: #fff3cd; border: 1px solid #ffeeba; padding: 8px 12px; border-radius: 3px; margin-top: 10px; font-size: 11.5px; color: #856404;">
+          ⚠️ Are you sure you want to submit the examination? Once submitted, you cannot change your answers.
+        </div>
+      </div>
+      <div class="nta-modal-footer">
+        <button type="button" class="btn-nta-white" id="btn-cancel-submit" onclick="closeModal('modal-submit-summary')">No (Resume Test)</button>
+        <button type="button" class="btn-nta-green" id="btn-confirm-submit">Yes (Submit Test)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/mockData.js"></script>
+  <script src="js/scoringEngine.js"></script>
+  <script src="js/examEngine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
